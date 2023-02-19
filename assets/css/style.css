@@ -6,6 +6,18 @@
 .myContainer {
     border: 1px solid blue;
 }
+
+.dashboard-future-container {
+    border: 1px solid black;
+    padding: 10px 5px 10px 5px;
+    margin: 10px;
+}
+
+.dashboard-future {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px;
+}
 /*Media Queries*/
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
