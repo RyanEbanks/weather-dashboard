@@ -5,6 +5,7 @@ var tempEl = document.querySelector(".temp-info");
 var windEl = document.querySelector(".wind-info");
 var humidEl = document.querySelector(".humid-info");
 var futureEl = document.querySelector(".dashboard-future-container");
+var historyEl = document.querySelector(".history-container");
 
 var submitHandler= function(event) {
     event.preventDefault();
@@ -13,6 +14,7 @@ var submitHandler= function(event) {
 
     if(cityInfo){
         cityQuery(cityInfo);
+        addHistory(cityInfo);
     } else {
         /*Probably Change this later*/
         alert("Not a valid input please try again!")
@@ -50,6 +52,7 @@ function cityQuery(myQuery) {
     //Changing the format to match imperial date system
     var newCurrentDate = dayjs(JSON.stringify(currentDate)).format("MM/DD/YYYY");
     console.log("Current date: " + newCurrentDate);
+    /*The icon gets provided in weather, you can take that and apply it*/
        cityEl.textContent = data.city.name + " " + newCurrentDate;
        tempEl.textContent = data.list[0].main.temp + "F";
        windEl.textContent = data.list[0].wind.speed + "mp/h";
@@ -80,4 +83,46 @@ function cityQuery(myQuery) {
     .catch(error => console.log(error));
 }
 
+/*These are being declared as global variables so that they don't get overwritten when the 
+function is ran*/
+var cityHistoryNum = 1;
+var myCityHistory = "";
+
+function addHistory(myStorage) {
+
+    if(cityHistoryNum <= 10) {
+        localStorage.setItem(`city-history-${cityHistoryNum}`, myStorage);
+        myCityHistory += `
+        <div class="col history-info">
+        <button type="button" class="btn btn-primary btn-lg city-history">${myStorage}</button>
+        </div>
+        `;
+        historyEl.innerHTML= myCityHistory;
+        cityHistoryNum += 1;
+        console.log("history number: " + cityHistoryNum);
+    } if(cityHistoryNum == 11) {
+        cityHistoryNum = 1;
+    }
+
+    return;
+}
+
+function showHistory() {
+    var displayHistory = "";
+    
+    for(var i = 0; i <= 10; i++) {
+        var newMyCityHistory = localStorage.getItem(`city-history-${i}`);
+        if(newMyCityHistory !== null) {
+            displayHistory += `
+            <div class="col history-info">
+            <button type="button" class="btn btn-primary btn-lg city-history">${newMyCityHistory}</button>
+            </div>
+            `;
+        }
+    }
+    historyEl.innerHTML = displayHistory;
+
+}
+
+window.addEventListener("load", showHistory);
 submitEl.addEventListener("submit", submitHandler);
