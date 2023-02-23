@@ -10,6 +10,7 @@ var futureEl = document.querySelector(".dashboard-future-container");
 var historyEl = document.querySelector(".history-container");
 var dateEl = document.querySelector(".date-info");
 var descripEl = document.querySelector(".description-info");
+var iconEl = document.querySelector(".icon-info");
 
 
 var submitHandler= function(event) {
@@ -55,11 +56,13 @@ function cityQuery(myQuery) {
     //Taking the first 11 values from the dt_txt string
     var currentDate = data.list[0].dt_txt.substr(0,11);
     //Changing the format to match imperial date system
-    var newCurrentDate = dayjs(JSON.stringify(currentDate)).format("MM/DD/YYYY");
+    var newCurrentDate = dayjs(JSON.stringify(currentDate)).format("MMMM D, YYYY");
     console.log("Current date: " + newCurrentDate);
     /*The icon gets provided in weather, you can take that and apply it*/
        cityEl.textContent = data.city.name;
        dateEl.textContent = newCurrentDate;
+       iconEl.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
+       iconEl.alt = "Weather Icon";
        descripEl.textContent = data.list[0].weather[0].description;
        tempEl.textContent = data.list[0].main.temp + "°F";
        windEl.textContent = data.list[0].wind.speed + "mp/h";
@@ -74,7 +77,7 @@ function cityQuery(myQuery) {
            var grabDate = data.list[i].dt_txt.substr(11,8);
         //    console.log("New Date: " + grabDate);
         var futureDate = data.list[i].dt_txt.substr(0,11);
-        var newFutureDate = dayjs(JSON.stringify(futureDate)).format("MM/DD/YYYY");
+        var newFutureDate = dayjs(JSON.stringify(futureDate)).format("MMMM D, YYYY");
            if(grabDate === "00:00:00") {
             //Testing to see if it would all lists with 12am
             console.log(`Temp for different days ${i}: ` + data.list[i].main.temp);
