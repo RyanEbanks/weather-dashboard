@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,76 +10,93 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
+
 <body>
-    <!--Search and Submit-->
-<!-- <div class="myForm">
-    <div class="row">
-    <form class="form-inline col-4">
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="label" class="sr-only">Search for a City:</label>
-          <input type="search" class="form-control" id="submitInput" placeholder="Enter a City">
-        </div>
-        <button type="submit" class="btn btn-primary mb-2 btn-lg">Search</button>
-      </form> -->
-
-      <form class="w-full max-w-sm myForm">
-        <div class="flex items-center border-b border-teal-500 py-2">
-          <input id="submitInput" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="search" placeholder="Enter a City" aria-label="Full name">
-          <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">
-            Search
-          </button>
-        </div>
-      </form>
-
-      <div class="dashboard-current-container">
-          <!-- <h1 class ="city-info"></h1>
-          <p class="temp-info"></p>
-          <p class="wind-info"></p>
-          <p class="humid-info"></p> -->
-          <div class="container bg-grey-lightest mx-auto shadow rounded pb-4 bg-cover" style="color:#606F7B;background-color: rgb(165, 182, 198); background-image:url('https://68.media.tumblr.com/f6a4004f3092b0d664daeabb95d5d195/tumblr_oduyciOJNb1uhjffgo1_500.gif');">
-            <div class="mt-2 p-4 border-b border-grey-light  text-center">
-              <span class="text-4xl font-thin city-info"></span>
-                  <div class="text-grey-light tracking-wide date-info"></div>
-               <span class="hidden sm:inline-block align-bottom text-xs">( 94041 )</span>
+    <!--Nav Bar-->
+    <header>
+        <nav class="flex items-center justify-between bg-slate-100 p-6 text-blue-700">
+            <span class="mx-auto font-semibold text-xl tracking-tight">Weather Dashboard</span>
             </div>
-            <div class="text-center text-xl text-grey-light p-4 description-info">
-              <span></span>
+        </nav>
+    </header>
+<div class="width-container">
+    <div class="mx-auto container">
+        <!--Left Side of the Screen-->
+        <div class="left-container">
+            <!--Search and Submit-->
+            <form class="w-full max-w-sm myForm">
+                <div class="flex items-center py-2">
+                    <input id="submitInput"
+                        class="appearance-none bg-white border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        type="search" placeholder="Enter a City" aria-label="Full name">
+                    <button
+                        class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded"
+                        type="submit">
+                        Search
+                    </button>
+                </div>
+            </form>
+
+            <!--History Buttons-->
+            <div class="history-container">
             </div>
-            <div class="flex justify-center">
-              <div class="text-center p-2">
-                  <div class="text-lg text-grey-light">
-                      <span class="text-center text-5xl text-white mx-6  font-thin temp-info"></span>
+        </div>
+
+        <!--Right Side of the Screen-->
+        <div class="right-container">
+            <div class="dashboard-current-container">
+                <div class="container bg-grey-lightest mx-auto shadow rounded pb-4 bg-cover"
+                    style="color:#606F7B;background-color: rgb(165, 182, 198); background-image:url('https://68.media.tumblr.com/f6a4004f3092b0d664daeabb95d5d195/tumblr_oduyciOJNb1uhjffgo1_500.gif');">
+                    <div class="mt-2 p-4 border-b border-grey-light  text-center">
+                        <span class="text-4xl font-thin city-info"></span>
+                        <div class="text-grey-light tracking-wide date-info"></div>
+                        <span class="hidden sm:inline-block align-bottom text-xs">( 94041 )</span>
                     </div>
-                    <div class="flex flex-row justify-between mt-6">
-                        <div class="flex flex-col items-center">
-                            <div class="font-medium text-sm wind-info-title"></div>
-                            <div class="text-sm text-gray-500 wind-info"></div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="font-medium text-sm humid-info-title"></div>
-                            <div class="text-sm text-gray-500 humid-info"></div>
+                    <div class="text-center text-xl text-grey-light p-4 description-info">
+                        <span></span>
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="text-center p-2">
+                            <div class="text-lg text-grey-light">
+                                <span class="text-center text-5xl text-white mx-6  font-thin temp-info"></span>
+                            </div>
+                            <div class="flex flex-row justify-between mt-6">
+                                <div class="flex flex-col items-center">
+                                    <div class="font-medium text-sm wind-info-title"></div>
+                                    <div class="text-sm text-gray-500 wind-info"></div>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="font-medium text-sm humid-info-title"></div>
+                                    <div class="text-sm text-gray-500 humid-info"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
-      </div>
 
-      <!--Buttons-->
-      <div class="history-container">
-      </div>
+            <div class="dashboard-future-container">
+                <div class="min-h-screen flex items-center justify-center">
 
-      
-      <div class="dashboard-future-container">
-        <div class="min-h-screen flex items-center justify-center">
-
+                </div>
+            </div>
         </div>
-      </div>
-      </div>
+    </div>
 </div>
     <!--Added Day.js-->
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="./assets/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
+<!--To do: 
+1. switch ( 94041 ) to icon
+2. update date format and center it
+3. add header that says weather dashboard \x
+4. reorganize page
+5. add reset.css
+6. (add buttons)x to history bar plus a title box
+-->

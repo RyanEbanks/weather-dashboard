@@ -88,7 +88,7 @@ function cityQuery(myQuery) {
             // `
 
             futureWeather += `
-            <div class="flex flex-col bg-white rounded p-4 w-full max-w-xs">
+            <div class="flex flex-col bg-white rounded p-4 w-full max-w-xs dashboard-future">
                                     <div class="font-bold text-xl">${newFutureDate}</div>
                                     <img class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg h-24 w-24"
                                        src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="Weather Icon"
@@ -136,8 +136,10 @@ function addHistory(myStorage) {
         localStorage.setItem(`city-history-${cityHistoryNum}`, myStorage);
         localStorage.setItem("CurrentIndexLoc", cityHistoryNum);
         myCityHistory += `
-        <div class="col history-info">
-        <button type="button" class="btn btn-primary btn-lg city-history">${myStorage}</button>
+        <div class="history-info">
+        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded city-history history-btn-size">
+        ${myStorage}
+        </button>
         </div>
         `;
         //Appends to html
@@ -166,8 +168,10 @@ function showHistory() {
         if(newMyCityHistory !== null) {
             localStorage.setItem("CurrentIndexLoc", i);
             displayHistory += `
-            <div class="col history-info">
-            <button type="button" class="btn btn-primary btn-lg city-history-${i}">${newMyCityHistory}</button>
+            <div class="history-info">
+            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded city-history-${i} history-btn-size">
+            ${newMyCityHistory}
+            </button>
             </div>
             `;
         }
