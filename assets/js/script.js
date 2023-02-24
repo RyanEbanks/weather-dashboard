@@ -28,36 +28,33 @@ var submitHandler= function(event) {
 }
 
 function cityQuery(myQuery) {
-    var geoLocApiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + myQuery + "&appid=9d4fb4c74de16fa19880e1c4a2624574";
+    var geoLocApiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + myQuery + "&appid=9d4fb4c74de16fa19880e1c4a2624574";
     
     fetch(geoLocApiUrl)
     .then(response => response.json())
     .then(data => {
         //Using template literals to get the lat and long from the first api and put it into the query for the second one to shorten code.
-        const weatherApiUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${data[0].lat}&lon=${data[0].lon}&appid=547e9f1acf0072a10884f73875106239&units=imperial`;
+        const weatherApiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${data[0].lat}&lon=${data[0].lon}&appid=547e9f1acf0072a10884f73875106239&units=imperial`;
         return fetch(weatherApiUrl);
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
-        /* I need CityName, date(y/m/d  format), 
-        icon representation of weather condition,
-        temperature, humidity, wind speed
-        */
-        console.log("City Name: " + data.city.name);
-        console.log("Weather Condition: " + data.list[0].weather[0].main);
-        //Displayed in Imperial
-        console.log("Temperature: " + data.list[0].main.temp);
-        //Displayed in mph
-        console.log("Wind Speed: " + data.list[0].wind.speed);
-        //Humidity is a percentage
-        console.log("Humidity: " + data.list[0].main.humidity);
+        // console.log(data);
+        // /* I need CityName, date(y/m/d  format), icon representation of weather condition, temperature, humidity, wind speed*/
+        // // console.log("City Name: " + data.city.name);
+        // console.log("Weather Condition: " + data.list[0].weather[0].main);
+        // //Displayed in Imperial
+        // console.log("Temperature: " + data.list[0].main.temp);
+        // //Displayed in mph
+        // console.log("Wind Speed: " + data.list[0].wind.speed);
+        // //Humidity is a percentage
+        // console.log("Humidity: " + data.list[0].main.humidity);
     
     //Taking the first 11 values from the dt_txt string
     var currentDate = data.list[0].dt_txt.substr(0,11);
     //Changing the format to match imperial date system
     var newCurrentDate = dayjs(JSON.stringify(currentDate)).format("MMMM D, YYYY");
-    console.log("Current date: " + newCurrentDate);
+    // console.log("Current date: " + newCurrentDate);
     /*The icon gets provided in weather, you can take that and apply it*/
        cityEl.textContent = data.city.name;
        dateEl.textContent = newCurrentDate;
@@ -80,7 +77,7 @@ function cityQuery(myQuery) {
         var newFutureDate = dayjs(JSON.stringify(futureDate)).format("MMMM D, YYYY");
            if(grabDate === "00:00:00") {
             //Testing to see if it would all lists with 12am
-            console.log(`Temp for different days ${i}: ` + data.list[i].main.temp);
+            // console.log(`Temp for different days ${i}: ` + data.list[i].main.temp);
             //    futureWeather += `
             //    <div class="dashboard-future">
             //     <h1 class="future-city-info">${newFutureDate}</h1>
@@ -134,7 +131,7 @@ function addHistory(myStorage) {
     } else {
         cityHistoryNum = parseInt(cityHistoryNum) + 1;
     }
-    console.log(cityHistoryNum);
+    // console.log(cityHistoryNum);
     if(cityHistoryNum <= 11) {
         localStorage.setItem(`city-history-${cityHistoryNum}`, myStorage);
         localStorage.setItem("CurrentIndexLoc", cityHistoryNum);
@@ -149,7 +146,7 @@ function addHistory(myStorage) {
         historyEl.innerHTML= myCityHistory;
         //This iterates the value, so it will always be 1 ahead of what is needed
         cityHistoryNum += 1;
-        console.log("history number: " + cityHistoryNum);
+        // console.log("history number: " + cityHistoryNum);
     } if(cityHistoryNum == 12) {
         //If we hit 12 it will rewrite number 1
         localStorage.clear();
@@ -179,7 +176,7 @@ function showHistory() {
             `;
         }
     }
-    console.log(displayHistory);
+    // console.log(displayHistory);
     historyEl.innerHTML = displayHistory;
     //Using let instead of var to create a new instance of j so that the correct button is referenced
     for(let j = 1; j <= 10; j++) {
@@ -189,7 +186,7 @@ function showHistory() {
             cityButton[j].addEventListener("click", function(val) {
                 // console.log("Button Clicked!");
                 var grabButtonText = cityButton[j].innerHTML;
-                console.log(grabButtonText);
+                // console.log(grabButtonText);
                 inputEl.value = grabButtonText;
                 submitHandler(val);
 
