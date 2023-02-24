@@ -105,11 +105,11 @@ function cityQuery(myQuery) {
                                     <div class="flex flex-row justify-between mt-6">
                                         <div class="flex flex-col items-center">
                                             <div class="font-medium text-sm">Wind</div>
-                                            <div class="text-sm text-gray-500">${data.list[i].wind.speed}mp/h</div>
+                                            <div class="text-sm text-black">${data.list[i].wind.speed}mp/h</div>
                                         </div>
                                         <div class="flex flex-col items-center">
                                             <div class="font-medium text-sm">Humidity</div>
-                                            <div class="text-sm text-gray-500">${data.list[i].main.humidity}%</div>
+                                            <div class="text-sm text-black">${data.list[i].main.humidity}%</div>
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@ function addHistory(myStorage) {
         localStorage.setItem("CurrentIndexLoc", cityHistoryNum);
         myCityHistory += `
         <div class="history-info">
-        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded city-history history-btn-size">
+        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded city-history history-btn-size w-32">
         ${myStorage}
         </button>
         </div>
@@ -172,7 +172,7 @@ function showHistory() {
             localStorage.setItem("CurrentIndexLoc", i);
             displayHistory += `
             <div class="history-info">
-            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded city-history-${i} history-btn-size">
+            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded city-history-${i} history-btn-size w-32">
             ${newMyCityHistory}
             </button>
             </div>

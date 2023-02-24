@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Reset CSS-->
+    <link rel="stylesheet" href="./assets/css/reset.css">
     <!--Tailwind CSS-->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -19,70 +21,77 @@
             </div>
         </nav>
     </header>
-<div class="width-container">
-    <div class="mx-auto container">
-        <!--Left Side of the Screen-->
-        <div class="left-container">
-            <!--Search and Submit-->
-            <form class="w-full max-w-sm myForm">
-                <div class="flex items-center py-2">
-                    <input id="submitInput"
-                        class="appearance-none bg-white border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                        type="search" placeholder="Enter a City" aria-label="Full name">
-                    <button
-                        class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded"
-                        type="submit">
-                        Search
-                    </button>
-                </div>
-            </form>
 
-            <!--History Buttons-->
-            <div class="history-container">
+    
+       
+    <div class="content-container w-full lg:w-4/5 mx-auto lg:flex lg:justify-between">
+        <!--Search and Submit-->
+        <form class="myForm w-full max-w-sm myForm mb-4 lg:w-1/4 lg:mr-4">
+            <div class="flex items-center py-2">
+                <input id="submitInput"
+                    class="appearance-none bg-white border border-black w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                    type="search" placeholder="Enter a City" aria-label="Full name">
+                <button
+                    class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded"
+                    type="submit">
+                    Search
+                </button>
             </div>
-        </div>
+        </form>
 
-        <!--Right Side of the Screen-->
-        <div class="right-container">
-            <div class="dashboard-current-container">
-                <div class="container bg-grey-lightest mx-auto shadow rounded pb-4 bg-cover"
-                    style="color:#606F7B;background-color: rgb(165, 182, 198); background-image:url('https://68.media.tumblr.com/f6a4004f3092b0d664daeabb95d5d195/tumblr_oduyciOJNb1uhjffgo1_500.gif');">
-                    <div class="mt-2 p-4 border-b border-grey-light  text-center">
-                        <span class="text-4xl font-thin city-info"></span>
-                        <div class="text-grey-light tracking-wide date-info"></div>
-                        <img class="hidden sm:inline-block align-bottom text-xs icon-info">
-                    </div>
-                    <div class="text-center text-xl text-grey-light p-4 description-info">
-                        <span></span>
-                    </div>
-                    <div class="flex justify-center">
-                        <div class="text-center p-2">
-                            <div class="text-lg text-grey-light">
-                                <span class="text-center text-5xl text-white mx-6  font-thin temp-info"></span>
+
+        <!--Current Weather Dashboard-->
+        <div class="dashboard-current-container w-full lg:w-1/2 lg:mr-4">
+            <div class="container bg-grey-lightest mx-auto shadow rounded pb-4 bg-cover dash-container">
+                <div class="mt-2 p-4 border-b border-grey-light  text-center">
+                    <span class="text-4xl font-thin city-info"></span>
+                    <div class="text-grey-light tracking-wide date-info"></div>
+                    <img class="hidden sm:inline-block align-bottom text-xs icon-info">
+                </div>
+                <div class="text-center text-xl text-grey-light p-4 description-info">
+                    <span></span>
+                </div>
+                <div class="flex justify-center">
+                    <div class="text-center p-2">
+                        <div class="text-lg text-grey-light">
+                            <span class="text-center text-5xl text-white mx-6  font-thin temp-info"></span>
+                        </div>
+                        <div class="flex flex-row justify-between mt-6">
+                            <div class="flex flex-col items-center">
+                                <div class="font-medium text-sm wind-info-title"></div>
+                                <div class="text-sm text-black wind-info"></div>
                             </div>
-                            <div class="flex flex-row justify-between mt-6">
-                                <div class="flex flex-col items-center">
-                                    <div class="font-medium text-sm wind-info-title"></div>
-                                    <div class="text-sm text-gray-500 wind-info"></div>
-                                </div>
-                                <div class="flex flex-col items-center">
-                                    <div class="font-medium text-sm humid-info-title"></div>
-                                    <div class="text-sm text-gray-500 humid-info"></div>
-                                </div>
+                            <div class="flex flex-col items-center">
+                                <div class="font-medium text-sm humid-info-title"></div>
+                                <div class="text-sm text-black humid-info"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="dashboard-future-container">
-                <div class="min-h-screen flex items-center justify-center">
+     
+    <div class="w-full lg:w-4/5 mx-auto lg:flex lg:justify-between">
+        <div class="history-glass-container w-full lg:w-1/5 mb-4">
+        <!--History Buttons-->
+        <h1 class="mx-auto font-semibold text-xl tracking-tight text-center">History</h1>
+        <div class="history-container">
+        </div>
+        </div>
 
-                </div>
+        <!--Future Weather-->
+        <div class="dashboard-future-container w-full lg:w-3/4 mb-4">
+            <h1 class="mx-auto font-semibold text-xl tracking-tight text-center">Upcoming Weather</h1>
+            <div class="min-h-screen flex items-center justify-center">
+
             </div>
         </div>
     </div>
-</div>
+     
+   
+
     <!--Added Day.js-->
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="./assets/js/script.js"></script>
