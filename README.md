@@ -13,8 +13,7 @@ N/A
 This project demonstrates my understanding of api's, problem solving skills and usage of html, css and javascript techniques. 
 
 ## Animation Of Functionality
-
-![weather-app-gif]()
+![ezgif-1-3ebd1af5d0](https://user-images.githubusercontent.com/43324378/221331732-cb0d7e3a-1073-41e3-b55d-6a2c7f68904b.gif)
 
 ## Credits
 N/A
