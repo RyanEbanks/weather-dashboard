@@ -1,17 +1,12 @@
 body {
-    /* background-color: #e2e8f0; */
-    /* background-color: yellowgreen; */
-    background: rgb(226,232,240);
-    background: radial-gradient(circle, rgba(226,232,240,1) 0%, rgba(237,244,252,1) 100%);
+    background-image: url("../images/app-background-3.jpg");
+    height: 100vh;
     text-shadow: 0 1px 0 #0000;
 }
 
-/* p {
-    font-size: 1.8rem;
-} */
-
 header {
     border-bottom: 1px solid #C9CFD6;
+    opacity: 60%;
 }
 
 .content-container {
@@ -25,7 +20,7 @@ header {
 
 .dash-container, .dashboard-future {
     background: rgb(155,202,251);
-    background: radial-gradient(circle, rgba(155,202,251,1) 0%, rgba(80,161,249,1) 100%);
+    background: radial-gradient(circle, #5DB6C9 0%, #34AEC9 100%);
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     padding: 20px;
@@ -40,14 +35,6 @@ header {
     margin-right: auto;
 }
 
-/* .dashboard-future-container {
-    border: 1px solid black;
-    margin: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-} */
-
 .dashboard-future {
     margin: 10px auto 10px auto;
 }
@@ -58,7 +45,6 @@ header {
     padding-right: 5px;
     border-radius: 10px;
     text-align: center;
-    margin: auto;
 }
 
 .history-glass-container, .dashboard-future-container {
@@ -78,4 +64,14 @@ header {
 .history-btn-size {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+/*Adding text shadow to certain titles*/
+.text-shadow {
+    text-shadow: 
+    0 0 0 rgba(9, 46, 77, 0.5),
+    1px 0 0 rgba(9, 46, 77, 0.4),
+    0 1px 0 rgba(9, 46, 77, 0.4),
+    -1px 0 0 rgba(9, 46, 77, 0.4),
+    0 -1px 0 rgba(9, 46, 77, 0.4);
 }
