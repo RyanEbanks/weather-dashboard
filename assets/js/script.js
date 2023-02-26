@@ -19,7 +19,8 @@ var submitHandler= function(event) {
     var cityInfo = inputEl.value.trim();
 
     if(cityInfo){
-        cityQuery(cityInfo);
+        currentCityQuery(cityInfo);
+        futureCityQuery(cityInfo);
         addHistory(cityInfo);
     } else {
         /*Probably Change this later*/
@@ -27,7 +28,42 @@ var submitHandler= function(event) {
     }
 }
 
-function cityQuery(myQuery) {
+
+function currentCityQuery(myQuery) {
+    var geoLocApiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + myQuery + "&appid=9d4fb4c74de16fa19880e1c4a2624574";
+    
+    fetch(geoLocApiUrl)
+    .then(response => response.json())
+    .then(data => {
+        //Using template literals to get the lat and long from the first api and put it into the query for the second one to shorten code.
+        const futureWeatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${data[0].lat}&lon=${data[0].lon}&appid=4b41455187ae1af691b769847993bf21&units=imperial`;
+        return fetch(futureWeatherApiUrl);
+    })
+    .then(response => response.json())
+    .then(data => {
+    // console.log(data);
+    // /* I need CityName, date(y/m/d  format), icon representation of weather condition, temperature, humidity, wind speed*/
+    //Taking the first 11 values from the dt_txt string
+    var currentDate = data.coord.dt;
+    //Changing the format to match imperial date system
+    var newCurrentDate = dayjs(JSON.stringify(currentDate)).format("MMMM D, YYYY");
+    // console.log("Current date: " + newCurrentDate);
+    /*The icon gets provided in weather, you can take that and apply it*/
+       cityEl.textContent = data.name;
+       dateEl.textContent = newCurrentDate;
+       iconEl.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+       iconEl.alt = "Weather Icon";
+       descripEl.textContent = data.weather[0].description;
+       tempEl.textContent = data.main.temp + "°F";
+       windEl.textContent = data.wind.speed + "mp/h";
+       windTitleEl.textContent = "Wind";
+       humidEl.textContent = data.main.humidity + "%";
+       humidTitleEl.textContent = "Humidity";
+    })
+    .catch(error => console.log(error));
+}
+
+function futureCityQuery(myQuery) {
     var geoLocApiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + myQuery + "&appid=9d4fb4c74de16fa19880e1c4a2624574";
     
     fetch(geoLocApiUrl)
@@ -39,53 +75,16 @@ function cityQuery(myQuery) {
     })
     .then(response => response.json())
     .then(data => {
-        // console.log(data);
-        // /* I need CityName, date(y/m/d  format), icon representation of weather condition, temperature, humidity, wind speed*/
-        // // console.log("City Name: " + data.city.name);
-        // console.log("Weather Condition: " + data.list[0].weather[0].main);
-        // //Displayed in Imperial
-        // console.log("Temperature: " + data.list[0].main.temp);
-        // //Displayed in mph
-        // console.log("Wind Speed: " + data.list[0].wind.speed);
-        // //Humidity is a percentage
-        // console.log("Humidity: " + data.list[0].main.humidity);
-    
-    //Taking the first 11 values from the dt_txt string
-    var currentDate = data.list[0].dt_txt.substr(0,11);
-    //Changing the format to match imperial date system
-    var newCurrentDate = dayjs(JSON.stringify(currentDate)).format("MMMM D, YYYY");
-    // console.log("Current date: " + newCurrentDate);
-    /*The icon gets provided in weather, you can take that and apply it*/
-       cityEl.textContent = data.city.name;
-       dateEl.textContent = newCurrentDate;
-       iconEl.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
-       iconEl.alt = "Weather Icon";
-       descripEl.textContent = data.list[0].weather[0].description;
-       tempEl.textContent = data.list[0].main.temp + "°F";
-       windEl.textContent = data.list[0].wind.speed + "mp/h";
-       windTitleEl.textContent = "Wind";
-       humidEl.textContent = data.list[0].main.humidity + "%";
-       humidTitleEl.textContent = "Humidity";
-
-
+        console.log(data);
        var futureWeather = "";
        for(var i = 0; i <= data.list.length; i++) {
            /*Grabbing the time from the dt_txt response*/
            var grabDate = data.list[i].dt_txt.substr(11,8);
-        //    console.log("New Date: " + grabDate);
+           console.log("New Date: " + grabDate);
         var futureDate = data.list[i].dt_txt.substr(0,11);
+        console.log("Future Date: " + futureDate);
         var newFutureDate = dayjs(JSON.stringify(futureDate)).format("MMMM D, YYYY");
-           if(grabDate === "00:00:00") {
-            //Testing to see if it would all lists with 12am
-            // console.log(`Temp for different days ${i}: ` + data.list[i].main.temp);
-            //    futureWeather += `
-            //    <div class="dashboard-future">
-            //     <h1 class="future-city-info">${newFutureDate}</h1>
-            //     <p class="future-temp-info">${data.list[i].main.temp}</p>
-            //     <p class="future-wind-info">${data.list[i].wind.speed}</p>
-            //     <p class="future-humid-info">${data.list[i].main.humidity}</p>
-            //     </div>
-            // `
+           if(grabDate === "12:00:00") {
 
             futureWeather += `
             <div class="flex flex-col bg-white rounded p-4 w-full max-w-xs dashboard-future">
